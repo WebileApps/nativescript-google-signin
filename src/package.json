@@ -1,8 +1,8 @@
 {
-	"name": "nativescript-myPluginClassName",
+	"name": "@webileapps/nativescript-google-signin",
 	"version": "1.0.0",
 	"description": "Your awesome NativeScript plugin.",
-	"main": "myPluginClassName",
+	"main": "google-signin",
 	"typings": "index.d.ts",
 	"nativescript": {
 		"platforms": {
@@ -12,7 +12,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/PluginAuthor/nativescript-myPluginClassName.git"
+		"url": "https://github.com/WebileApps/nativescript-google-signin.git"
 	},
 	"scripts": {
 		"tsc": "npm i && tsc",
@@ -24,7 +24,7 @@
 		"demo.ios": "npm run tsc && cd ../demo && tns run ios --emulator",
 		"demo.android": "npm run tsc && cd ../demo && tns run android --emulator",
 		"demo.reset": "cd ../demo && npx rimraf -- hooks node_modules platforms package-lock.json",
-		"plugin.prepare": "npm run build && cd ../demo && tns plugin remove nativescript-myPluginClassName && tns plugin add ../src",
+		"plugin.prepare": "npm run build && cd ../demo && tns plugin remove @webileapps/nativescript-google-signin && tns plugin add ../src",
 		"clean": "npm run demo.reset && npx rimraf -- node_modules package-lock.json && npm i"
 	},
 	"keywords": [
@@ -38,10 +38,10 @@
 		"email": "youremail@yourdomain.com"
 	},
 	"bugs": {
-		"url": "https://github.com/PluginAuthor/nativescript-myPluginClassName/issues"
+		"url": "https://github.com/WebileApps/nativescript-google-signin/issues"
 	},
 	"license": "Apache-2.0",
-	"homepage": "https://github.com/PluginAuthor/nativescript-myPluginClassName",
+	"homepage": "https://github.com/WebileApps/nativescript-google-signin",
 	"devDependencies": {
 		"tns-core-modules": "^6.0.0",
 		"tns-platform-declarations": "^6.0.0",
