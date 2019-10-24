@@ -1,18 +1,17 @@
 import {android as androidApp} from "tns-core-modules/application/application";
 const androidApplication = androidApp;
 let googleApiClient: any ;
-const activity = androidApplication.foregroundActivity || androidApplication.startActivity;
 const ACTIVITY_REQUEST_CODE = 22364;
 declare const com: any;
 let signInClient: any;
 
-    function init(config) {
+    function init(activity, config) {
         if (!(googleApiClient == null || googleApiClient === undefined)) {
             return;
         }
-        let authCode = getCodeFromResource("google_auth_code");
+        let authCode = getCodeFromResource(activity, "google_auth_code");
         authCode = authCode === undefined ? config.authCode : authCode;
-        let tokenCode = getCodeFromResource("google_request_code");
+        let tokenCode = getCodeFromResource(activity, "google_request_code");
         tokenCode = tokenCode === undefined ? config.tokenCode : tokenCode;
         if (authCode === undefined && tokenCode === undefined) {
             throw new Error("Siging Failed: authCode or requestToken is required");
@@ -31,9 +30,10 @@ let signInClient: any;
             googleSignInOptionsBuilder.requestProfile();
         }
         let googleSignInOptions = googleSignInOptionsBuilder.build();
+        console.log(com.google.android.gms.auth.api.signin.GoogleSignIn);
         signInClient = com.google.android.gms.auth.api.signin.GoogleSignIn.getClient(androidApp.context, googleSignInOptions);
         }
-    function getCodeFromResource(name) {
+    function getCodeFromResource(activity, name) {
         const packageName = activity.getPackageName();
         const identifier = androidApplication.context.getResources().getIdentifier(name, "string", packageName);
         if (identifier === 0) {
@@ -42,8 +42,9 @@ let signInClient: any;
         return androidApplication.context.getString(identifier);
     }
     export function signIn(config, callback) {
+        const activity = androidApplication.foregroundActivity || androidApplication.startActivity;
         try {
-            init(config);
+            init(activity, config);
         } catch (e) {
             callback.onFailed(e);
             return;
